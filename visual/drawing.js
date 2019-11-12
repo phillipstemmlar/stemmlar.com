@@ -2,20 +2,11 @@ var canvas_el = null;
 var canvas = null;
 var isLooping = true;
 var drawInterval = null;
-var delay = 1;
-var draw = function(){}
-var setup = function(){}
+var delay = 33;     //1/(0.033 spf) => 30 fps
+var draw;
+var setup;
 
 var box;
-
-setup = function(){
-  noloop();
-}
-
-draw = function(){
-}
-
-
 
 function setLineWidth(w){
   canvas.lineWidth = w;
@@ -46,6 +37,7 @@ function init(){
 }
 function tryDraw(){
   if(typeof draw === "function"){
+    clear();
     draw();
   }else{
     clearInterval(drawInterval);
