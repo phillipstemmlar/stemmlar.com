@@ -1,6 +1,7 @@
 var canvas_el = null;
 var canvas = null;
 var isLooping = true;
+var BACKGROUND_COLOR = "#ffffffff";
 var drawInterval = null;
 var delay = 33;     //1/(0.033 spf) => 30 fps
 var draw;
@@ -18,9 +19,7 @@ function clear(){
   canvas.clearRect(0,0,width(),height());
 }
 function background(color_hex_str){
-  canvas.fillStyle = color_hex_str;
-  canvas.clearRect(0,0,width(),height());
-  canvas.fillRect(0,0,width(),height());
+  BACKGROUND_COLOR = color_hex_str;
 }
 function init(){
   canvas_el = document.getElementById('canvas');
@@ -38,6 +37,9 @@ function init(){
 function tryDraw(){
   if(typeof draw === "function"){
     clear();
+    canvas.fillStyle = BACKGROUND_COLOR;
+    canvas.clearRect(0,0,width(),height());
+    canvas.fillRect(0,0,width(),height());
     draw();
   }else{
     clearInterval(drawInterval);
@@ -180,6 +182,7 @@ class circle{
     this.border_color = new color(0,0,0,255);
     this.fill = true;
     this.border = false;
+    this.tag = 0;
   }
   draw(){
     if(this.fill){
@@ -208,13 +211,21 @@ class circle{
     this.border = val;
   }
   setBGColor(r,g,b,a=255){
-    this.bg_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.bg_color = r;
+    }else{
+      this.bg_color.set(r,g,b,a);
+    }
   }
   setBGAlpha(a){
     this.bg_color.alpha = a;
   }
   setBorderColor(r,g,b,a=255){
-    this.border_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.border_color = r;
+    }else{
+      this.border_color.set(r,g,b,a);
+    }
   }
   setBorderAlpha(a){
     this.border_color.alpha = a;
@@ -225,6 +236,7 @@ class vect2D{
   constructor(x=0,y=0){
     this.x = x;
     this.y = y;
+    this.tag = 0;
   }
   draw(color_hex_str = "#000000ff"){
     drawPoint(this.x,this.y,color_hex_str);
@@ -311,6 +323,7 @@ class rect{
     this.border_color = new color(0,0,0,255);
     this.fill = true;
     this.border = false;
+    this.tag = 0;
   }
   draw(){
     if(this.fill){
@@ -350,13 +363,21 @@ class rect{
     this.border = val;
   }
   setBGColor(r,g,b,a=255){
-    this.bg_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.bg_color = r;
+    }else{
+      this.bg_color.set(r,g,b,a);
+    }
   }
   setBGAlpha(a){
     this.bg_color.alpha = a;
   }
   setBorderColor(r,g,b,a=255){
-    this.border_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.border_color = r;
+    }else{
+      this.border_color.set(r,g,b,a);
+    }
   }
   setBorderAlpha(a){
     this.border_color.alpha = a;
