@@ -9,6 +9,9 @@ var setup;
 
 var box;
 
+function setFrameRate(fps){
+  delay = 1/fps;
+}
 function setLineWidth(w){
   canvas.lineWidth = w;
 }
