@@ -3,14 +3,14 @@ var canvas = null;
 var isLooping = true;
 var BACKGROUND_COLOR = "#ffffffff";
 var drawInterval = null;
-var delay = 33;     //1/(0.033 spf) => 30 fps
+var delay = 1/30*1000;
 var draw;
 var setup;
 
 var box;
 
 function setFrameRate(fps){
-  delay = 1/fps;
+  delay = (1/fps)*1000;
 }
 function setLineWidth(w){
   canvas.lineWidth = w;
