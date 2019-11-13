@@ -387,3 +387,30 @@ class rect{
   }
   print(){console.log(this);}
 }
+class bar{
+  constructor(Rect){
+    this.Rect = Rect;
+    this.active = false;
+    this.marked = false;
+    this.sorted = false;
+    this.sorted_color = color.grey();
+    this.active_color = color.green();
+    this.marked_color = color.red();
+    this.unsorted_color = color.black();
+    this.tag = 0;
+    this.length = 100;
+  }
+  draw(){
+    this.Rect.br.y = this.length*(this.tag/100)
+    if(this.sorted){
+      this.Rect.bg_color = this.sorted_color;
+    }else if(this.active){
+      this.Rect.bg_color = this.active_color;
+    }else if(this.marked){
+      this.Rect.bg_color = this.marked_color;
+    }else{
+      this.Rect.bg_color = this.unsorted_color;
+    }
+    this.Rect.draw();
+  }
+}

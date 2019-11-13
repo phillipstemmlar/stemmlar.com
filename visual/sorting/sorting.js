@@ -4,7 +4,7 @@ let bar_Length = 500;
 let bar_width = 10
 let bar_spacing = 10;
 
-let bar_count = 20;
+let bar_count = 30;
 
 let max_val = 100;
 let min_val = 10;
@@ -15,17 +15,69 @@ let loop_counter3 = 0;
 let loop_counter4 = 0;
 
 let loop_val = null;
+let loop_val1 = null;
 
 setup = function(){
   // delay = 500;
   // delay = 200;
-  // setFrameRate(60);
+  setFrameRate(60);
   background('#0050A0');
+  // noloop();
   loop();
-  sort_alg = selection_sort;
+  sort_alg = bubble_sort;
   sort_alg();
 }
 
+function insertion_sort(){
+  resetBars();
+  drawBars();
+
+  loop_counter1 = 1;
+  loop_counter2 = loop_counter1 - 1;
+  loop_val = bars[loop_counter1].tag;
+  loop_val1 = false;
+
+  draw = function(){
+    if(loop_counter1 < bar_count){
+      if(loop_counter2 >= 0 && bars[loop_counter2].tag > loop_val){
+        bars[loop_counter2].active = true;
+        bars[loop_counter2].sorted = false;
+        swapBars(bars[loop_counter2+1],bars[loop_counter2]);
+        bars[loop_counter2+1].sorted = true;
+        loop_counter2--;
+      }else{
+        bars[loop_counter2+1].sorted = true;
+        loop_counter1++;
+        if(loop_counter1 < bar_count){
+          loop_val = bars[loop_counter1].tag;
+          bars[loop_counter1].marked = true;
+          bars[loop_counter1].sorted = false;
+          loop_counter2 = loop_counter1 - 1;
+        }
+      }
+    }else{
+      bars[bar_count-1].sorted = true;
+      noloop();
+    }
+    drawBars();
+  }
+
+/*
+  int i, key, j;
+    for (i = 1; i < n; i++)
+    {
+        key = arr[i].tag;
+        j = i - 1;
+
+        while (j >= 0 && arr[j].tag > key)
+        {
+            arr[j + 1].tag = arr[j].tag;
+            j = j - 1;
+        }
+        arr[j + 1].tag = key;
+    }
+  */
+}
 function selection_sort(){
   resetBars();
   drawBars();
@@ -113,10 +165,6 @@ function swapBars(bar1, bar2){
   bar1.tag = bar2.tag;
   bar2.tag = tmp;
 
-  tmp = bar1.sorted;
-  bar1.sorted = bar2.sorted;
-  bar2.sorted = tmp;
-
   tmp = bar1.marked;
   bar1.marked = bar2.marked;
   bar2.marked = tmp;
@@ -154,32 +202,4 @@ function logBars(){
     out = out + bars[i].tag + '  ';
   }
   console.log(out);
-}
-
-class bar{
-  constructor(Rect){
-    this.Rect = Rect;
-    this.active = false;
-    this.marked = false;
-    this.sorted = false;
-    this.sorted_color = color.grey();
-    this.active_color = color.green();
-    this.marked_color = color.red();
-    this.unsorted_color = color.black();
-    this.tag = 0;
-    this.length = 100;
-  }
-  draw(){
-    this.Rect.br.y = this.length*(this.tag/100)
-    if(this.sorted){
-      this.Rect.bg_color = this.sorted_color;
-    }else if(this.active){
-      this.Rect.bg_color = this.active_color;
-    }else if(this.marked){
-      this.Rect.bg_color = this.marked_color;
-    }else{
-      this.Rect.bg_color = this.unsorted_color;
-    }
-    this.Rect.draw();
-  }
 }
