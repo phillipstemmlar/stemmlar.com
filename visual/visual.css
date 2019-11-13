@@ -1,0 +1,88 @@
+div.header{
+  background-color: #0050A0;
+  padding: 20px;
+  text-align: left;
+}
+
+div.header div.col{
+  margin-left: 50px;
+}
+
+div.header span.title-body{
+  font-size: 20pt;
+  color: white;
+  font-weight: bold;
+}
+
+div.header span.title-tail{
+  font-size: 12pt;
+  color: grey;
+  font-weight: bold;
+}
+
+body{
+  background-color: #bbbbbb;
+}
+
+div.body{
+  display: flex;
+  background-color: #bbbbbb;
+  width: 100%;
+  height: 100%;
+}
+
+div.body canvas{
+  margin-top: 20px;
+  width: 100%;
+  height: 120%;
+  /* border: 1px solid black; */
+}
+
+div.col{
+  /* border: 1px solid black; */
+}
+
+div.input-panel{
+  margin-top: 20px
+}
+
+div.input-panel label{
+  padding : 10px;
+  min-width: 150px;
+}
+
+div.input-panel select{
+  padding-left: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+div.input-panel input[type='number']{
+  width : 50%;
+  padding-left: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+div.input-panel span.cont-color{
+  /* border : 1px solid black; */
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  float: right;
+  margin-right: 50px;
+}
+
+div.input-panel input[type='color']{
+  opacity: 0;
+  /* border: none; */
+}
+
+div.input-panel input[type='checkbox']{
+  width : 10%;
+}
+
+div.input-panel button{
+  margin: 10px;
+  width: 100px;
+}

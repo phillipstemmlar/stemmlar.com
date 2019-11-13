@@ -1,10 +1,12 @@
 var bars = [];
 var sort_alg;
-let bar_Length = 500;
-let bar_width = 10
-let bar_spacing = 10;
+let bar_Length = 100;
+let bar_width = 15
+let bar_spacing = 15;
+let bar_vert_offest = 0;
+let showValues = false;
 
-let bar_count = 30;
+let bar_count = 10;
 
 let max_val = 100;
 let min_val = 10;
@@ -17,14 +19,63 @@ let loop_counter4 = 0;
 let loop_val = null;
 let loop_val1 = null;
 
+let BGCOLOR = '#bbbbbb';
+let sorted_color = new color(0,0,0);
+let unsorted_color = new color(0,0,0);
+let active_color = new color(0,0,0);
+let marked_color = new color(0,0,0);
+// <option value="volvo">Volvo</option>
+
+var algos_names = ['Bubble Sort','Insertion Sort','Selection Sort'];
+var algos_func = [bubble_sort,insertion_sort,selection_sort];
+
+function onLoad(){
+  var cmb = document.getElementById('algorithms');
+  for (var i = 0; i < algos_names.length; i++){
+    cmb.innerHTML = cmb.innerHTML + '\n<option value="'+i+'">'+algos_names[i]+'</options>';
+  }
+  onColorChanged('cont-sorted-color','sorted_color');
+  onColorChanged('cont-unsorted-color','unsorted_color');
+  onColorChanged('cont-active-color','active_color');
+  onColorChanged('cont-marked-color','marked_color');
+  setFrameRate(30);
+}
+
+function onColorChanged(id1,id2){
+  var cp = document.getElementById(id1);
+  cp.style.backgroundColor = document.getElementById(id2).value;
+}
+
+function start(){
+  var count_in = document.getElementById('bar_count');
+  if(count_in.value > count_in.max) count_in.value = count_in.max;
+  if(count_in.value < count_in.min) count_in.value = count_in.min;
+  bar_count = count_in.value;
+
+  var fps_in = document.getElementById('frame_rate');
+  if(fps_in.value > fps_in.max) fps_in.value = fps_in.max;
+  if(fps_in.value < fps_in.min) fps_in.value = fps_in.min;
+  setFrameRate(fps_in.value);
+
+  showValues = document.getElementById('showValues').checked;
+  bar_vert_offest = (showValues)? 20 : 0;
+
+  sorted_color.setHex(document.getElementById('sorted_color').value);
+  unsorted_color.setHex(document.getElementById('unsorted_color').value);
+  active_color.setHex(document.getElementById('active_color').value);
+  marked_color.setHex(document.getElementById('marked_color').value);
+
+  var index = document.getElementById('algorithms').value;
+  sort_alg = algos_func[index];
+  if(typeof sort_alg === 'function'){
+    init();
+  }
+}
+
 setup = function(){
-  // delay = 500;
-  // delay = 200;
-  setFrameRate(60);
-  background('#0050A0');
-  // noloop();
+  // setFrameRate(60);
+  background(BGCOLOR);
   loop();
-  sort_alg = bubble_sort;
   sort_alg();
 }
 
@@ -169,7 +220,7 @@ function swapBars(bar1, bar2){
   bar1.marked = bar2.marked;
   bar2.marked = tmp;
 
-  console.log("swap");
+  // console.log("swap");
 }
 function sort(){
   sort_alg();
@@ -184,16 +235,22 @@ function drawBars(){
   }
 }
 function resetBars(){
+  bar_Length = height() - 20;
   var gx = width()/2 - (bar_spacing+bar_width)*bar_count/2 - bar_spacing-bar_width;
   for(var i = 0; i < bar_count; ++i){
     // console.log(i);
     var rand = Math.floor(Math.random()*(max_val-min_val)+min_val);
-    bars[i] = new bar(new rect(new vect2D(gx + (i+1)*(bar_width+bar_spacing),10), new vect2D(gx+bar_width+ (i+1)*(bar_spacing+bar_width), bar_Length*(rand/100))));
+    bars[i] = new bar(new rect(new vect2D(gx + (i+1)*(bar_width+bar_spacing),bar_vert_offest), new vect2D(gx+bar_width+ (i+1)*(bar_spacing+bar_width), bar_Length*(rand/100)+bar_vert_offest)));
     // bars[i] = new bar(new rect(new vect2D(i*(bar_width+bar_spacing),10),new vect2D(i*(bar_width+bar_spacing)+bar_width, 100)));
     bars[i].tag = rand;
     bars[i].length = bar_Length;
+    bars[i].showValue = showValues;
+    bars[i].sorted_color = sorted_color;
+    bars[i].unsorted_color = unsorted_color;
+    bars[i].active_color = active_color;
+    bars[i].marked_color = marked_color;
   }
-  console.log('RESET');
+  // console.log('RESET');
   // console.log(bars);
 }
 function logBars(){

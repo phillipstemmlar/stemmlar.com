@@ -399,6 +399,7 @@ class bar{
     this.unsorted_color = color.black();
     this.tag = 0;
     this.length = 100;
+    this.showValue = false;
   }
   draw(){
     this.Rect.br.y = this.length*(this.tag/100)
@@ -412,5 +413,10 @@ class bar{
       this.Rect.bg_color = this.unsorted_color;
     }
     this.Rect.draw();
+    if(this.showValue){
+      drawText(new vect2D(this.Rect.tl.x, this.Rect.tl.y - 20),this.tag);
+    }
+
+    //ction drawText(pt,text,size=15,font="Arial",color_hex_str = "#000000ff"){
   }
 }

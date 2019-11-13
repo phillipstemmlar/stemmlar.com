@@ -9,10 +9,90 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="../drawing.js"></script>
     <script src="sorting.js"></script>
+    <link rel="stylesheet" href="../visual.css">
   </head>
-  <body onload="init()">
-    <div class="text-center">
-      <canvas class="border border-dark" id="canvas" width="800" height="600"></canvas>
+  <body onload="onLoad()">
+
+    <div class="header container-fluid">
+      <div class="row">
+        <div class="col"><span class="title-body">Stemmlar</span><span class="title-tail">.com</span></div>
+        <div class="col">
+          <span class="title-body">
+            Sorting Algorithm Visualizer
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="body container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="container input-panel">
+
+            <div class="row"><div class="col">
+              <select class="browser-default custom-select" id="algorithms">
+              </select>
+            </div></div>
+
+            <div class="row"><div class="col">
+              <label>Bar count</label>
+              <input type="number" name="bar_count" id="bar_count" value="20" min="10" max="30">
+            </div></div>
+
+            <div class="row"><div class="col">
+              <label>Frame Rate</label>
+              <input type="number" name="frame_rate" id="frame_rate" value="30" min="0" max="60">
+            </div></div>
+
+            <div class="row"><div class="col">
+              <label>Sorted Color</label>
+              <span id="cont-sorted-color" class="cont-color">
+                <input type="color" name="sorted_color" id="sorted_color" value="#515151"
+                onchange="onColorChanged('cont-sorted-color','sorted_color')"/>
+              </span>
+            </div></div>
+
+            <div class="row"><div class="col">
+              <label>Unsorted Color</label>
+              <span id="cont-unsorted-color" class="cont-color">
+                <input type="color" name="unsorted_color" id="unsorted_color" value="#000000"
+                onchange="onColorChanged('cont-unsorted-color','unsorted_color')"/>
+              </span>
+            </div></div>
+
+            <div class="row"><div class="col">
+              <label>Active Color</label>
+              <span id="cont-active-color" class="cont-color">
+                <input type="color" name="active_color" id="active_color" value="#00ff00"
+                onchange="onColorChanged('cont-active-color','active_color')"/>
+              </span>
+            </div></div>
+
+            <div class="row"><div class="col">
+              <label>Marked Color</label>
+              <span id="cont-marked-color" class="cont-color">
+                <input type="color" name="marked_color" id="marked_color" value="#ff0000"
+                onchange="onColorChanged('cont-marked-color','marked_color')"/>
+              </span>
+            </div></div>
+
+            <div class="row"><div class="col">
+                <input type="checkbox" id="showValues" name="showValues" value="showValues" checked>Show Values<br>
+            </div></div>
+
+            <div class="row"><div class="col">
+                <input type="checkbox" id="showValues" name="showValues" value="showValues" checked>Random Values<br>
+            </div></div>
+
+            <div class="row"><div class="col text-center">
+              <button class="btn btn-light" type="button" name="button" onclick="start()">Sort</button>
+            </div></div>
+
+          </div>
+        </div>
+        <div class="col-lg-8"><canvas id="canvas" height="400" width="800"></canvas></div>
+      </div>
     </div>
   </body>
 </html>
