@@ -4,12 +4,17 @@ var isLooping = true;
 var BACKGROUND_COLOR = "#ffffffff";
 var drawInterval = null;
 var delay = 1/30*1000;
+var min_fps = 1;
+var max_fps = 60;
+const default_fps = 30;
 var draw;
 var setup;
 
 var box;
 
 function setFrameRate(fps){
+  if(fps > max_fps) fps = max_fps;
+  if(fps < min_fps) fps = min_fps;
   delay = (1/fps)*1000;
 }
 function setLineWidth(w){

@@ -1,15 +1,20 @@
 var bars = [];
+var values = [];
 var sort_alg;
 let bar_Length = 100;
 let bar_width = 15
 let bar_spacing = 15;
 let bar_vert_offest = 0;
-let showValues = false;
+var showValues = true;
+var randomValues = true;
 
-let bar_count = 10;
+var bar_count = 10;
+var BAR_COUNT = bar_count;
 
-let max_val = 100;
-let min_val = 10;
+var max_val = 100;
+var min_val = 10;
+var max_bars = 25;
+var min_bars = 5;
 
 let loop_counter1 = 0;
 let loop_counter2 = 0;
@@ -28,49 +33,6 @@ let marked_color = new color(0,0,0);
 
 var algos_names = ['Bubble Sort','Insertion Sort','Selection Sort'];
 var algos_func = [bubble_sort,insertion_sort,selection_sort];
-
-function onLoad(){
-  var cmb = document.getElementById('algorithms');
-  for (var i = 0; i < algos_names.length; i++){
-    cmb.innerHTML = cmb.innerHTML + '\n<option value="'+i+'">'+algos_names[i]+'</options>';
-  }
-  onColorChanged('cont-sorted-color','sorted_color');
-  onColorChanged('cont-unsorted-color','unsorted_color');
-  onColorChanged('cont-active-color','active_color');
-  onColorChanged('cont-marked-color','marked_color');
-  setFrameRate(30);
-}
-
-function onColorChanged(id1,id2){
-  var cp = document.getElementById(id1);
-  cp.style.backgroundColor = document.getElementById(id2).value;
-}
-
-function start(){
-  var count_in = document.getElementById('bar_count');
-  if(count_in.value > count_in.max) count_in.value = count_in.max;
-  if(count_in.value < count_in.min) count_in.value = count_in.min;
-  bar_count = count_in.value;
-
-  var fps_in = document.getElementById('frame_rate');
-  if(fps_in.value > fps_in.max) fps_in.value = fps_in.max;
-  if(fps_in.value < fps_in.min) fps_in.value = fps_in.min;
-  setFrameRate(fps_in.value);
-
-  showValues = document.getElementById('showValues').checked;
-  bar_vert_offest = (showValues)? 20 : 0;
-
-  sorted_color.setHex(document.getElementById('sorted_color').value);
-  unsorted_color.setHex(document.getElementById('unsorted_color').value);
-  active_color.setHex(document.getElementById('active_color').value);
-  marked_color.setHex(document.getElementById('marked_color').value);
-
-  var index = document.getElementById('algorithms').value;
-  sort_alg = algos_func[index];
-  if(typeof sort_alg === 'function'){
-    init();
-  }
-}
 
 setup = function(){
   // setFrameRate(60);
@@ -183,8 +145,8 @@ function bubble_sort(){
   loop_counter2 = 0;    // j = 0
 
   draw = function(){
-    if(loop_counter1 < bar_count - 1){
-      if(loop_counter2 < bar_count - loop_counter1 - 1){
+    if(loop_counter1 < BAR_COUNT - 1){
+      if(loop_counter2 < BAR_COUNT - loop_counter1 - 1){
         bars[loop_counter2].active = false;
         bars[loop_counter2+1].active = true;
         if(bars[loop_counter2].tag > bars[loop_counter2+1].tag){
@@ -194,7 +156,7 @@ function bubble_sort(){
       }else{
         loop_counter1++;
         loop_counter2 = 0;
-        bars[bar_count - loop_counter1].sorted = true;
+        bars[BAR_COUNT - loop_counter1].sorted = true;
       }
     }else{
       noloop();
@@ -230,18 +192,21 @@ function sort(){
   }
 }
 function drawBars(){
-  for(var i = 0; i < bar_count; ++i){
+  // console.log(bars);
+  for(var i = 0; i < BAR_COUNT; ++i){
     bars[i].draw();
   }
 }
 function resetBars(){
   bar_Length = height() - 20;
   var gx = width()/2 - (bar_spacing+bar_width)*bar_count/2 - bar_spacing-bar_width;
-  for(var i = 0; i < bar_count; ++i){
-    // console.log(i);
-    var rand = Math.floor(Math.random()*(max_val-min_val)+min_val);
+
+  BAR_COUNT = (randomValues)? bar_count : values.length;
+  // console.log(randomValues);
+
+  for(var i = 0; i < BAR_COUNT; ++i){
+    var rand = (randomValues)? Math.floor(Math.random()*(max_val-min_val)+min_val) : Math.floor(values[i]);
     bars[i] = new bar(new rect(new vect2D(gx + (i+1)*(bar_width+bar_spacing),bar_vert_offest), new vect2D(gx+bar_width+ (i+1)*(bar_spacing+bar_width), bar_Length*(rand/100)+bar_vert_offest)));
-    // bars[i] = new bar(new rect(new vect2D(i*(bar_width+bar_spacing),10),new vect2D(i*(bar_width+bar_spacing)+bar_width, 100)));
     bars[i].tag = rand;
     bars[i].length = bar_Length;
     bars[i].showValue = showValues;
@@ -255,7 +220,7 @@ function resetBars(){
 }
 function logBars(){
   var out = '';
-  for(var i = 0; i < bar_count; ++i){
+  for(var i = 0; i < BAR_COUNT; ++i){
     out = out + bars[i].tag + '  ';
   }
   console.log(out);
