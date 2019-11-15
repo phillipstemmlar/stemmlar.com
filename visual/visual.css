@@ -70,15 +70,13 @@ div.input-panel div#add-item-panel label{
   /* border: 1px solid red; */
 }
 
-div.input-panel div#add-item-header{
+div.input-panel div#add-item-header1,
+div.input-panel div#add-item-header2{
   padding-top: 5px;
 }
 
-div.input-panel div#add-item-header input#randomValues{
-  color: blue;
-}
-
-div.input-panel div#add-item-header input[type='button']{
+div.input-panel div#add-item-header1 input[type='button'],
+div.input-panel div#add-item-header2 input[type='button']{
   width: 80px;
   height: 18px;
   padding-top: 0;
@@ -89,8 +87,8 @@ div.input-panel div#add-item-header input[type='button']{
   margin-left: 10px;
 }
 
-div.input-panel div#add-item-panel{
-  align-content: flex-start;
+div.input-panel div#add-item-container{
+
 }
 
 div.input-panel div#add-item-panel input[type='number']{

@@ -24,6 +24,8 @@ let loop_counter4 = 0;
 let loop_val = null;
 let loop_val1 = null;
 
+var isSorted = false;
+
 let BGCOLOR = '#bbbbbb';
 let sorted_color = new color(0,0,0);
 let unsorted_color = new color(0,0,0);
@@ -35,14 +37,13 @@ var algos_names = ['Bubble Sort','Insertion Sort','Selection Sort'];
 var algos_func = [bubble_sort,insertion_sort,selection_sort];
 
 setup = function(){
-  // setFrameRate(60);
+  resetBars();
   background(BGCOLOR);
-  loop();
+  isSorted = false;
   sort_alg();
 }
 
 function insertion_sort(){
-  resetBars();
   drawBars();
 
   loop_counter1 = 1;
@@ -51,7 +52,7 @@ function insertion_sort(){
   loop_val1 = false;
 
   draw = function(){
-    if(loop_counter1 < bar_count){
+    if(loop_counter1 < BAR_COUNT){
       if(loop_counter2 >= 0 && bars[loop_counter2].tag > loop_val){
         bars[loop_counter2].active = true;
         bars[loop_counter2].sorted = false;
@@ -61,7 +62,7 @@ function insertion_sort(){
       }else{
         bars[loop_counter2+1].sorted = true;
         loop_counter1++;
-        if(loop_counter1 < bar_count){
+        if(loop_counter1 < BAR_COUNT){
           loop_val = bars[loop_counter1].tag;
           bars[loop_counter1].marked = true;
           bars[loop_counter1].sorted = false;
@@ -69,8 +70,9 @@ function insertion_sort(){
         }
       }
     }else{
-      bars[bar_count-1].sorted = true;
+      bars[BAR_COUNT-1].sorted = true;
       noloop();
+      isSorted = true;
     }
     drawBars();
   }
@@ -92,7 +94,6 @@ function insertion_sort(){
   */
 }
 function selection_sort(){
-  resetBars();
   drawBars();
 
   loop_counter1 = 0;    // i = 0
@@ -102,8 +103,8 @@ function selection_sort(){
   // bars[0].marked = true;
 
   draw = function(){
-    if(loop_counter1 < bar_count-1){
-      if(loop_counter2 < bar_count){
+    if(loop_counter1 < BAR_COUNT-1){
+      if(loop_counter2 < BAR_COUNT){
         bars[loop_counter3].marked = true;
         bars[loop_counter2-1].active = false;
         bars[loop_counter2].active = true;
@@ -117,14 +118,15 @@ function selection_sort(){
       }else{
         swapBars(bars[loop_counter3],bars[loop_counter1])
         bars[loop_counter1].sorted = true;
-        bars[bar_count-1].active = false;
+        bars[BAR_COUNT-1].active = false;
         loop_counter1++;
         loop_counter3 = loop_counter1;
         loop_counter2 = loop_counter1 + 1;
       }
     }else{
+      bars[BAR_COUNT-1].sorted = true;
       noloop();
-      bars[bar_count-1].sorted = true;
+      isSorted = true;
     }
     drawBars();
   }
@@ -138,7 +140,6 @@ function selection_sort(){
   */
 }
 function bubble_sort(){
-  resetBars();
   drawBars();
 
   loop_counter1 = 0;    // i = 0
@@ -159,8 +160,9 @@ function bubble_sort(){
         bars[BAR_COUNT - loop_counter1].sorted = true;
       }
     }else{
-      noloop();
       bars[0].sorted = true;
+      noloop();
+      isSorted = true;
     }
     drawBars();
   }
@@ -192,22 +194,40 @@ function sort(){
   }
 }
 function drawBars(){
-  // console.log(bars);
   for(var i = 0; i < BAR_COUNT; ++i){
     bars[i].draw();
   }
 }
-function resetBars(){
-  bar_Length = height() - 20;
-  var gx = width()/2 - (bar_spacing+bar_width)*bar_count/2 - bar_spacing-bar_width;
 
-  BAR_COUNT = (randomValues)? bar_count : values.length;
-  // console.log(randomValues);
+function init_drawBars(){
+  clear();
+  canvas.fillStyle = BACKGROUND_COLOR;
+  canvas.clearRect(0,0,width(),height());
+  canvas.fillRect(0,0,width(),height());
+  drawBars();
+}
+
+function resetBars(){
+  var vals;
+  if(randomValues){
+    BAR_COUNT = bar_count;
+    values = [];
+    for(var i = 0; i < bar_count; i++){
+      values[i] = Math.floor(Math.random()*(max_val-min_val)+min_val);
+    }
+    vals = values;
+  }else{
+    BAR_COUNT = ownValues.length;
+    vals = ownValues;
+  }
+
+  bar_Length = height() - 20;
+  var gx = width()/2 - (bar_spacing+bar_width)*BAR_COUNT/2 - bar_spacing-bar_width;
 
   for(var i = 0; i < BAR_COUNT; ++i){
-    var rand = (randomValues)? Math.floor(Math.random()*(max_val-min_val)+min_val) : Math.floor(values[i]);
-    bars[i] = new bar(new rect(new vect2D(gx + (i+1)*(bar_width+bar_spacing),bar_vert_offest), new vect2D(gx+bar_width+ (i+1)*(bar_spacing+bar_width), bar_Length*(rand/100)+bar_vert_offest)));
-    bars[i].tag = rand;
+    var val = vals[i];
+    bars[i] = new bar(new rect(new vect2D(gx + (i+1)*(bar_width+bar_spacing),bar_vert_offest), new vect2D(gx+bar_width+ (i+1)*(bar_spacing+bar_width), bar_Length*(val/100)+bar_vert_offest)));
+    bars[i].tag = val;
     bars[i].length = bar_Length;
     bars[i].showValue = showValues;
     bars[i].sorted_color = sorted_color;

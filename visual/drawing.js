@@ -29,18 +29,25 @@ function clear(){
 function background(color_hex_str){
   BACKGROUND_COLOR = color_hex_str;
 }
-function init(){
-  canvas_el = document.getElementById('canvas');
-  if(typeof canvas_el === "undefined" || canvas_el === null)return;
-  canvas = canvas_el.getContext('2d');
-  if(typeof canvas === "undefined" || canvas === null)return;
-  setup();
+
+function init_draw(){
+  init();
+  start_Draw();
+}
+function start_Draw(){
   tryDraw();
   if(isLooping){
     drawInterval = setInterval(tryDraw,delay);
   }else{
     tryDraw();
   }
+}
+function init(){
+  canvas_el = document.getElementById('canvas');
+  if(typeof canvas_el === "undefined" || canvas_el === null)return;
+  canvas = canvas_el.getContext('2d');
+  if(typeof canvas === "undefined" || canvas === null)return;
+  setup();
 }
 function tryDraw(){
   if(typeof draw === "function"){
@@ -67,6 +74,7 @@ function loop(){
 function noloop(){
   isLooping = false;
 }
+
 function width(){
   return canvas_el.width;
 }
@@ -77,6 +85,7 @@ function decToHex(dec){
   // console.log(dec);
   return ((dec < 10 && dec > -10)? "0":"") + dec.toString(16);
 }
+
 function drawPoint(x,y,color_hex_str = "#000000ff"){
   canvas.fillStyle = color_hex_str;
   canvas.beginPath();
