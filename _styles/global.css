@@ -45,6 +45,9 @@ body{
 	color: white;
 	padding: 10px 50px;
 }
+#copyright{
+	padding: 10px;
+}
 
 #cos-search-bar{
 	display: flex;
@@ -68,7 +71,7 @@ body{
 }
 
 .btn{
-	/* border: 1px solid lime; */
+	user-select: none;
 }
 .btn.btn-search{
 	position: relative;
@@ -278,8 +281,111 @@ body{
 	max-width: 500px;
 	height: auto;}
 
+select.cmb {
 
+}
+textarea.txt{
+	height: 100px;
+	/* overflow-x: wrap;
+	overflow-y: scroll; */
+}
 
+#feedback{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px 0px; 
+}
+#feedback-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+	background-color: white;
+	border-radius: 8px;
+	width: 40vw;
+	min-width: 400px;
+	max-width: 600px;
+}
+
+#feedback-email,#feedback-type,
+#feedback-msg,#feedback-notify{
+	width: 100%;
+}
+
+.feedback-input{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 5px 0px;
+	color: black;
+}
+
+.feedback-cmb{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 5px 0px;
+	color: black;
+}
+.feedback-cmb select{
+	padding: 4px 0px;
+}
+.feedback-input input[type="text"],
+.feedback-input input[type="email"],
+.feedback-input textarea{
+	padding: 4px 5px;
+}
+.feedback-check{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 5px 0px;
+	color: black;
+}
+
+.btn.btn-feedback-open{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 12vw;
+	min-width: 110px;
+	max-width: 200px;
+	height: 25px;
+	color: white;
+	background: black;
+	border-radius: 4px;
+}
+.btn.btn-feedback-open:hover{
+	background: rgb(20,20,20);
+}
+.btn.btn-feedback-open:active{
+	background: rgb(10,10,10);
+}
+
+.btn.btn-feedback-submit{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 12vw;
+	min-width: 110px;
+	max-width: 200px;
+	height: 25px;
+	color: white;
+	background: black;
+	border-radius: 4px;
+	margin-top: 5px;
+}
+.btn.btn-feedback-submit:hover{
+	background: rgb(20,20,20);
+}
+.btn.btn-feedback-submit:active{
+	background: rgb(10,10,10);
+}
+#feedback-submit-container{
+	display: flex;
+	justify-content: center;
+}
 
 body *{
 	/* border: 1px solid red; */
