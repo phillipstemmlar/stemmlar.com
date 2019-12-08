@@ -10,197 +10,206 @@
 	<script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script> -->
 	<script defer type="application/javascript" src="./_scripts/global.js"></script>
 	<script defer type="application/javascript" src="./_scripts/landing.js"></script>
-	<script defer type="application/javascript" src="./_scripts/sketch.js"></script>
+	<!-- <script defer type="application/javascript" src="./_scripts/sketch.js"></script> -->
 </head>
 <body onload="landed();ready();">
-	<section id="landing-screen">
-		<div id="landing-ui">
-			<div id="landing-title" class="center-align">
-				<span class="jumbo jumbo-big white-text">Stemmlar</span>
-				<span class="jumbo jumbo-small lightgray-text">.com</span>
+<section id="landing-screen">
+	<div id="landing-ui">
+		<div id="landing-title" class="center-align">
+			<span class="jumbo jumbo-big white-text">Stemmlar</span>
+			<span class="jumbo jumbo-small lightgray-text">.com</span>
+		</div>
+		<div id="landing-controls">
+			<div id="landing-nav" class="nav nav-underline-white center-align">
+				<span class="nav-item white-text nav-item-medium" data-nav-to-id="pnl-cos">Computer Science</span>
+				<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-projects">Projects</span>
+				<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-devlog">Devlog</span>
+				<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-about">About</span>
+				<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-social">Social</span>
 			</div>
-			<div id="landing-controls">
-				<div id="landing-nav" class="nav nav-underline-white center-align">
-					<span class="nav-item white-text nav-item-medium" data-nav-to-id="pnl-cos">Computer Science</span>
-					<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-projects">Projects</span>
-					<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-devlog">Devlog</span>
-					<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-about">About</span>
-					<span class="nav-item white-text nav-item-small"  data-nav-to-id="pnl-social">Social</span>
-				</div>
-				<div id="landing-socials" class="nav nav-icons center-align">
-					<span class="nav-icon"><img src="./_img/icon_rss.png" alt=""/></span>
-					<!-- <span class="nav-icon"><img src="./_img/icon_github.png" alt=""/></span> -->
-					<!-- <span class="nav-icon"><img src="./_img/icon_trello.png" alt=""/></span> -->
-					<span class="nav-icon"><img src="./_img/icon_instagram.png" alt=""/></span>
-					<span class="nav-icon"><img src="./_img/icon_twitter.png" alt=""/></span>
-					<span class="nav-icon"><img src="./_img/icon_facebook.png" alt=""/></span>
-					<span class="nav-icon"><img src="./_img/icon_youtube.png" alt=""/></span>
-					<span class="nav-icon"><img src="./_img/icon_patreon.png" alt=""/></span>
-					<!-- <span class="nav-icon"><img src="./icon_udemy.png" alt=""/></span> -->
-				</div>
+			<div id="landing-socials" class="nav nav-icons center-align">
+				<span class="nav-icon"><img src="./_img/icon_rss.png" alt=""/></span>
+				<!-- <span class="nav-icon"><img src="./_img/icon_github.png" alt=""/></span> -->
+				<!-- <span class="nav-icon"><img src="./_img/icon_trello.png" alt=""/></span> -->
+				<span class="nav-icon"><img src="./_img/icon_instagram.png" alt=""/></span>
+				<span class="nav-icon"><img src="./_img/icon_twitter.png" alt=""/></span>
+				<span class="nav-icon"><img src="./_img/icon_facebook.png" alt=""/></span>
+				<span class="nav-icon"><img src="./_img/icon_youtube.png" alt=""/></span>
+				<span class="nav-icon"><img src="./_img/icon_patreon.png" alt=""/></span>
+				<!-- <span class="nav-icon"><img src="./icon_udemy.png" alt=""/></span> -->
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
+
+<section id="home">
 	
-	<section id="home">
-		
-		<div class="pnl" id="pnl-cos">
-			<div class="pnl-header-container pnl-header-black">
-				<span class="pnl-header">Computer Science</span>
-				<span class="pnl-header-end"></span>
+	<div class="pnl" id="pnl-cos">
+		<div class="pnl-header-container pnl-header-black">
+			<span class="pnl-header">Computer Science</span>
+			<span class="pnl-header-end"></span>
+		</div>
+		<div class="pnl-content pnl-explore pnl-content-white">
+			<div id="cos-search-bar" class="center-align">
+				<input type="search" id="cos-field-search" name="cos-search" class="field  fiels-search" placeholder="Search in Computer Science..."/>
+				<div id="cos-btn-search" class="btn btn-search">
+					<img src="./_img/social.png" alt="">
+					<div class="btn-search-overlay"></div>
+				</div>
 			</div>
-			<div class="pnl-content pnl-explore pnl-content-white">
-				<div id="cos-search-bar" class="center-align">
-					<input type="search" id="cos-field-search" name="cos-search" class="field  fiels-search" placeholder="Search in Computer Science..."/>
-					<div id="cos-btn-search" class="btn btn-search">
-						<img src="./_img/social.png" alt="">
-						<div class="btn-search-overlay"></div>
-					</div>
-				</div>
-				<div class="horz-line"></div>	
-				<div class="explore-grid">
-					<div class="explore-grid-cell">Algorithms</div>
-					<div class="explore-grid-cell">Data Structures</div>
-					<div class="explore-grid-cell">Design Patterns</div>
-					<div class="explore-grid-cell">Multi&shyprogramming</div>
-					<div class="explore-grid-cell">Automata Theory</div>
-					<div class="explore-grid-cell">Mathematics</div>
-					<div class="explore-grid-cell">Game Development</div>
-					<div class="explore-grid-cell">Simulations</div>	
-					<!-- &shy => soft hyphen to suggest a possible breakpoint if needed. -->
-				</div>
+			<div class="horz-line"></div>	
+			<div class="explore-grid">
+				<div class="explore-grid-cell">Algorithms</div>
+				<div class="explore-grid-cell">Data Structures</div>
+				<div class="explore-grid-cell">Design Patterns</div>
+				<div class="explore-grid-cell">Multi&shyprogramming</div>
+				<div class="explore-grid-cell">Automata Theory</div>
+				<div class="explore-grid-cell">Mathematics</div>
+				<div class="explore-grid-cell">Game Development</div>
+				<div class="explore-grid-cell">Simulations</div>	
+				<!-- &shy => soft hyphen to suggest a possible breakpoint if needed. -->
 			</div>
 		</div>
+	</div>
 
-		<div class="pnl" id="pnl-projects">
-				<div class="pnl-header-container pnl-header-black">
-					<span class="pnl-header">Projects</span>
-					<span class="pnl-header-end"></span>
-				</div>
-				<div class="pnl-content pnl-explore pnl-content-white">
-					Before you can begin to determine what the composition of a particular paragraph will be, you must first decide on an 
-					argument and a working thesis statement for your paper. What is the most important idea that you are trying to convey 
-					to your reader? The information in each paragraph must be related to that idea. In other words, your paragraphs should 
-					remind your reader that there is a recurrent relationship between your thesis and the information in each paragraph. 
-					A working thesis functions like a seed from which your paper, and your ideas, will grow. The whole process is an organic 
-					one—a natural progression from a seed to a full-blown paper where there are direct, familial relationships between all of the ideas in the paper.
-				</div>
-				<div class="nav nav-links center-align">
-					<div class="nav-link"><a href="./About/about.html">About Us</a></div>
-					<div class="nav-link"><a href="./About/personal.html">About Developer</a></div>
+	<div class="pnl" id="pnl-projects">
+		<div class="pnl-header-container pnl-header-black">
+			<span class="pnl-header">Projects</span>
+			<span class="pnl-header-end"></span>
+		</div>
+		<div class="pnl-content pnl-explore pnl-content-white">
+			<!-- <div id="cos-search-bar" class="center-align">
+				<input type="search" id="cos-field-search" name="cos-search" class="field  fiels-search" placeholder="Search in Computer Science..."/>
+				<div id="cos-btn-search" class="btn btn-search">
+					<img src="./_img/social.png" alt="">
+					<div class="btn-search-overlay"></div>
 				</div>
 			</div>
-
-		<div class="pnl" id="pnl-devlog">
-			<div class="pnl-header-container pnl-header-black">
-				<span class="pnl-header">Developer's log</span>
-				<span class="pnl-header-end"></span>
-			</div>
-			<div class="pnl-content pnl-devlog pnl-content-white">
-				
-				<div class="devlog-container">
-					<div class="devlog-head">
-						<span class="devlog-icon"><img src="./_img/icon_game_dev.png" alt=""></span>
-						<span class="devlog-header">Developer's log: Entry 1</span>
-					</div>
-					<div class="devlog-body">
-						Before you can begin to determine what the composition of a 
-						particular paragraph will be, you must first decide on an argument 
-						and a working thesis statement for your paper. What is the most 
-						important idea that you are trying to convey to your reader? The 
-						information in each paragraph must be related to that idea. 
-						<div class="devlog-img"><img src="./_img/devlog_sample.jpg" alt=""></div>
-					</div>
-
-				</div>
-
+			<div class="horz-line"></div>	 -->
+			<div class="explore-grid">
+				<div class="explore-grid-cell-img"><img src="./_img/devlog_sample.jpg" alt=""><div class="explore-grid-cell-label"><span class="explore-grid-cell-label-inner">Project 1</span></div></div>
+				<div class="explore-grid-cell-img"><img src="./_img/devlog_sample.jpg" alt=""><div class="explore-grid-cell-label"><span class="explore-grid-cell-label-inner">Project 2</span></div></div>
+				<div class="explore-grid-cell-img"><img src="./_img/devlog_sample.jpg" alt=""><div class="explore-grid-cell-label"><span class="explore-grid-cell-label-inner">Project 3</span></div></div>
+				<div class="explore-grid-cell-img"><img src="./_img/devlog_sample.jpg" alt=""><div class="explore-grid-cell-label"><span class="explore-grid-cell-label-inner">Project 4</span></div></div>
+				<div class="explore-grid-cell-img"><img src="./_img/devlog_sample.jpg" alt=""><div class="explore-grid-cell-label"><span class="explore-grid-cell-label-inner">Project 5</span></div></div>
+				<div class="explore-grid-cell-img"><img src="./_img/devlog_sample.jpg" alt=""><div class="explore-grid-cell-label"><span class="explore-grid-cell-label-inner">Project 6</span></div></div>
+				<!-- &shy => soft hyphen to suggest a possible breakpoint if needed. -->
 			</div>
 		</div>
+	</div>
 
-		
-		<div class="pnl" id="pnl-about">
-				<div class="pnl-header-container pnl-header-black">
-					<span class="pnl-header">About</span>
-					<span class="pnl-header-end"></span>
+	<div class="pnl" id="pnl-devlog">
+		<div class="pnl-header-container pnl-header-black">
+			<span class="pnl-header">Developer's log</span>
+			<span class="pnl-header-end"></span>
+		</div>
+		<div class="pnl-content pnl-devlog pnl-content-white">
+			
+			<div class="devlog-container">
+				<div class="devlog-head">
+					<span class="devlog-icon"><img src="./_img/icon_game_dev.png" alt=""></span>
+					<span class="devlog-header">Developer's log: Entry 1</span>
 				</div>
-				<div class="pnl-content pnl-paragraph pnl-content-white">
-					Before you can begin to determine what the composition of a particular paragraph will be, you must first decide on an 
-					argument and a working thesis statement for your paper. What is the most important idea that you are trying to convey 
-					to your reader? The information in each paragraph must be related to that idea. In other words, your paragraphs should 
-					remind your reader that there is a recurrent relationship between your thesis and the information in each paragraph. 
-					A working thesis functions like a seed from which your paper, and your ideas, will grow. The whole process is an organic 
-					one—a natural progression from a seed to a full-blown paper where there are direct, familial relationships between all of the ideas in the paper.
+				<div class="devlog-body">
+					Before you can begin to determine what the composition of a 
+					particular paragraph will be, you must first decide on an argument 
+					and a working thesis statement for your paper. What is the most 
+					important idea that you are trying to convey to your reader? The 
+					information in each paragraph must be related to that idea. 
+					<div class="devlog-img"><img src="./_img/devlog_sample.jpg" alt=""></div>
 				</div>
-				<div class="nav nav-links center-align">
-					<div class="nav-link"><a href="./About/about.html">About Us</a></div>
-					<div class="nav-link"><a href="./About/personal.html">About Developer</a></div>
-				</div>
+
 			</div>
 
-			<div class="pnl" id="pnl-social">
-					<div class="pnl-header-container pnl-header-black">
-						<span class="pnl-header">Social Media</span>
-						<span class="pnl-header-end"></span>
-					</div>
-					<div class="pnl-content pnl-paragraph pnl-content-white">
-						Before you can begin to determine what the composition of a particular paragraph will be, you must first decide on an 
-						argument and a working thesis statement for your paper. What is the most important idea that you are trying to convey 
-						to your reader? The information in each paragraph must be related to that idea. In other words, your paragraphs should 
-						remind your reader that there is a recurrent relationship between your thesis and the information in each paragraph. 
-						A working thesis functions like a seed from which your paper, and your ideas, will grow. The whole process is an organic 
-						one—a natural progression from a seed to a full-blown paper where there are direct, familial relationships between all of the ideas in the paper.
-					</div>
-					<div class="nav nav-links center-align">
-						<div class="nav-link"><a href="./About/about.html">About Us</a></div>
-						<div class="nav-link"><a href="./About/personal.html">About Developer</a></div>
-					</div>
+		</div>
+	</div>
+
+	
+	<div class="pnl" id="pnl-about">
+		<div class="pnl-header-container pnl-header-black">
+			<span class="pnl-header">About</span>
+			<span class="pnl-header-end"></span>
+		</div>
+		<div class="pnl-content pnl-paragraph pnl-content-white">
+			Before you can begin to determine what the composition of a particular paragraph will be, you must first decide on an 
+			argument and a working thesis statement for your paper. What is the most important idea that you are trying to convey 
+			to your reader? The information in each paragraph must be related to that idea. In other words, your paragraphs should 
+			remind your reader that there is a recurrent relationship between your thesis and the information in each paragraph. 
+			A working thesis functions like a seed from which your paper, and your ideas, will grow. The whole process is an organic 
+			one—a natural progression from a seed to a full-blown paper where there are direct, familial relationships between all of the ideas in the paper.
+		</div>
+		<div class="nav nav-links center-align">
+			<div class="nav-link"><a href="./About/about.html">About Us</a></div>
+			<div class="nav-link"><a href="./About/personal.html">About Developer</a></div>
+		</div>
+	</div>
+
+	<div class="pnl" id="pnl-social">
+		<div class="pnl-header-container pnl-header-black">
+			<span class="pnl-header">Social Media</span>
+			<span class="pnl-header-end"></span>
+		</div>
+		<div class="pnl-content pnl-paragraph pnl-content-white">
+			Before you can begin to determine what the composition of a particular paragraph will be, you must first decide on an 
+			argument and a working thesis statement for your paper. What is the most important idea that you are trying to convey 
+			to your reader? The information in each paragraph must be related to that idea. In other words, your paragraphs should 
+			remind your reader that there is a recurrent relationship between your thesis and the information in each paragraph. 
+			A working thesis functions like a seed from which your paper, and your ideas, will grow. The whole process is an organic 
+			one—a natural progression from a seed to a full-blown paper where there are direct, familial relationships between all of the ideas in the paper.
+		</div>
+		<div class="nav nav-links center-align">
+			<div class="nav-link"><a href="./About/about.html">About Us</a></div>
+			<div class="nav-link"><a href="./About/personal.html">About Developer</a></div>
+		</div>
+	</div>
+
+</section>
+<section id="footer">
+	<div id="feedback">
+		<div id="feedback-container">
+			<div id="btn-feedback-open" class="btn btn-feedback-open">Give Feedback</div>
+			<div id="feedback-body" hidden="true">
+				<input type="hidden" name="page" id="feedback-input-page" value="LandingPage"/>
+
+				<div id="feedback-email" class="feedback-input">
+					<label for="email" hidden>Email Address</label>
+					<input type="email" name="email" id="feedback-input-email" placeholder="Email Addrees"  class="field"/>
 				</div>
 
-	</section>
-	<section id="footer">
-		<div id="feedback">
-			<div id="feedback-container">
-				<div id="btn-feedback-open" class="btn btn-feedback-open">Give Feedback</div>
-				<div id="feedback-body" hidden="true">
-					<input type="hidden" name="page" id="feedback-input-page" value="LandingPage"/>
-
-					<div id="feedback-email" class="feedback-input">
-						<label for="email" hidden>Email Address</label>
-						<input type="email" name="email" id="feedback-input-email" placeholder="Email Addrees"/>
-					</div>
-
-					<div id="feedback-type" class="feedback-cmb">
-						<label for="type" >Feedback Type</label>
-						<select id="feedback-input-type" name="type" class="cmb">
-							<option value="Coment">Comment</option>
-							<option value="Request">Request</option>
-							<option value="Other">Other</option>
-						</select>
-					</div>
-
-					<div id="feedback-other" class="feedback-input">
-						<label for="other" hidden>Other</label>
-						<input type="text" name="other" id="feedback-input-other" placeholder="Other"/>
-					</div>
-
-					<div id="feedback-msg" class="feedback-input">
-						<label for="msg" hidden>Feedback Message</label>
-						<textarea name="msg" id="feedback-input-msg" class="txt" placeholder="Feedback Message"></textarea>
-					</div>
-
-					<div id="feedback-notify" class="feedback-check">
-						<input type="checkbox" name="check-notify" id="feedback-check-notify"/>
-						<label for="check-notify">Notify me when request was been met</label>
-					</div>
-					<div id="feedback-subscribe" class="feedback-check">
-						<input type="checkbox" name="check-subscribe" id="feedback-check-subscribe"/>
-						<label for="check-subscribe">Subscribe to the Developer's Log</label>
-					</div>
-					<div id="feedback-submit-container"><div id="btn-feedback-submit" class="btn btn-feedback-submit">Submit Feedback</div></div>
+				<div id="feedback-type" class="feedback-cmb">
+					<label for="type" >Feedback Type</label>
+					<select id="feedback-input-type" name="type" class="cmb">
+						<option value="Coment">Comment</option>
+						<option value="Request">Request</option>
+						<option value="Other">Other</option>
+					</select>
 				</div>
+
+				<div id="feedback-other" class="feedback-input">
+					<label for="other" hidden>Other</label>
+					<input type="text" name="other" id="feedback-input-other" placeholder="Other" class="field"/>
+				</div>
+
+				<div id="feedback-msg" class="feedback-input">
+					<label for="msg" hidden>Feedback Message</label>
+					<textarea name="msg" id="feedback-input-msg" class="txt" placeholder="Feedback Message"></textarea>
+				</div>
+
+				<div id="feedback-notify" class="feedback-check">
+					<input type="checkbox" name="check-notify" id="feedback-check-notify" class="checkbox"/>
+					<label for="check-notify">Notify me when request has been met</label>
+				</div>
+				<div id="feedback-subscribe" class="feedback-check">
+					<input type="checkbox" name="check-subscribe" id="feedback-check-subscribe"/>
+					<label fo3
+					r="check-subscribe">Subscribe to the Developer's Log</label>
+				</div>
+				<div id="feedback-submit-container"><div id="btn-feedback-submit" class="btn btn-feedback-submit">Submit Feedback</div></div>
 			</div>
 		</div>
-		<div id="copyright" class="center-align"></div>
-	</section>
+	</div>
+	<div id="copyright" class="center-align"></div>
+</section>
+	
 </body>
 </html>

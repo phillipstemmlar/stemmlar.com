@@ -1,5 +1,5 @@
 function landed(){
-	document.body.setAttribute('onresize','adjustCanvas();');
+	// document.body.setAttribute('onresize','adjustCanvas();');
 
 	var navs = document.getElementsByClassName('nav-item');
 	for(var i = 0; i < navs.length; ++i){

@@ -99,13 +99,15 @@ body{
 	opacity: 0.5;
 }
 
-.field{
+input.field, select.cmb, textarea.txt{
 	border: 1px solid rgb(80,80,80);
 	border-radius: 5px;
 	height: 100%;
 	padding: 0px 5px;
 }
-.field.field-search{
+textarea.txt{	height: 100px;}
+input.checkbox{
+	border: 1px solid black;
 }
 
 .jumbo{
@@ -254,6 +256,52 @@ body{
 .explore-grid-cell:active{
 	background-color: rgb(20,20,20);
 }
+.explore-grid-cell-img{
+	position: relative;
+	flex: 0 0 17vw;
+	height: 16vw;
+	min-width: 180px;
+	min-height: 170px;
+	max-width: 350px;
+	max-height: 3400px;
+	margin: 3px;
+	user-select: none;
+	overflow: hidden;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	border: 1px solid black;
+	/* background-color: rgb(80,80,80); */
+}
+.explore-grid-cell-img:hover .explore-grid-cell-label{
+	opacity: 1;
+}
+.explore-grid-cell-img:active{
+	opacity: 0.8;
+}
+.explore-grid-cell-img img{
+	width: auto;
+	min-height: 100%;
+	-webkit-user-drag: none;
+	/* border: 1px solid red; */
+}
+.explore-grid-cell-img .explore-grid-cell-label{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	background-color:rgba(50,50,50,0.8);
+	opacity: 0;
+	width: 110%;
+	height: 50%;
+	transform: translate(0px, 90%) rotate(5deg);
+}
+.explore-grid-cell-img .explore-grid-cell-label .explore-grid-cell-label-inner{
+	position: absolute;
+	transform: translate(0px,-20px) rotate(-5deg);
+}
+
 .devlog-container{
 	/* border: 1px solid red; */
 	background: gray;
@@ -280,15 +328,6 @@ body{
 	width: 20vw;
 	max-width: 500px;
 	height: auto;}
-
-select.cmb {
-
-}
-textarea.txt{
-	height: 100px;
-	/* overflow-x: wrap;
-	overflow-y: scroll; */
-}
 
 #feedback{
 	display: flex;
