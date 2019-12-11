@@ -1,0 +1,23 @@
+{
+  "name": "stemmlar.com",
+  "version": "1.0.0",
+  "description": "Phillip Stemmlar Schulze's Personal website and Computer Science Wiki",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phillipstemmlar/stemmlar.com.git"
+  },
+  "keywords": [
+    "Computer",
+    "Science"
+  ],
+  "author": "Phillip Stemmlar Schulze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phillipstemmlar/stemmlar.com/issues"
+  },
+  "homepage": "https://github.com/phillipstemmlar/stemmlar.com#readme"
+}
