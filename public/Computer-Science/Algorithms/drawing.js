@@ -1,22 +1,22 @@
 var canvas_el = null;
 var canvas = null;
 var isLooping = true;
+var BACKGROUND_COLOR = "#ffffffff";
 var drawInterval = null;
-var delay = 1;
-var draw = function(){}
-var setup = function(){}
+var delay = 1/30*1000;
+var min_fps = 1;
+var max_fps = 60;
+const default_fps = 30;
+var draw;
+var setup;
 
 var box;
 
-setup = function(){
-  noloop();
+function setFrameRate(fps){
+  if(fps > max_fps) fps = max_fps;
+  if(fps < min_fps) fps = min_fps;
+  delay = (1/fps)*1000;
 }
-
-draw = function(){
-}
-
-
-
 function setLineWidth(w){
   canvas.lineWidth = w;
 }
@@ -27,16 +27,14 @@ function clear(){
   canvas.clearRect(0,0,width(),height());
 }
 function background(color_hex_str){
-  canvas.fillStyle = color_hex_str;
-  canvas.clearRect(0,0,width(),height());
-  canvas.fillRect(0,0,width(),height());
+  BACKGROUND_COLOR = color_hex_str;
 }
-function init(){
-  canvas_el = document.getElementById('canvas');
-  if(typeof canvas_el === "undefined" || canvas_el === null)return;
-  canvas = canvas_el.getContext('2d');
-  if(typeof canvas === "undefined" || canvas === null)return;
-  setup();
+
+function init_draw(){
+  init();
+  start_Draw();
+}
+function start_Draw(){
   tryDraw();
   if(isLooping){
     drawInterval = setInterval(tryDraw,delay);
@@ -44,8 +42,19 @@ function init(){
     tryDraw();
   }
 }
+function init(){
+  canvas_el = document.getElementById('canvas');
+  if(typeof canvas_el === "undefined" || canvas_el === null)return;
+  canvas = canvas_el.getContext('2d');
+  if(typeof canvas === "undefined" || canvas === null)return;
+  setup();
+}
 function tryDraw(){
   if(typeof draw === "function"){
+    clear();
+    canvas.fillStyle = BACKGROUND_COLOR;
+    canvas.clearRect(0,0,width(),height());
+    canvas.fillRect(0,0,width(),height());
     draw();
   }else{
     clearInterval(drawInterval);
@@ -65,6 +74,7 @@ function loop(){
 function noloop(){
   isLooping = false;
 }
+
 function width(){
   return canvas_el.width;
 }
@@ -75,6 +85,7 @@ function decToHex(dec){
   // console.log(dec);
   return ((dec < 10 && dec > -10)? "0":"") + dec.toString(16);
 }
+
 function drawPoint(x,y,color_hex_str = "#000000ff"){
   canvas.fillStyle = color_hex_str;
   canvas.beginPath();
@@ -188,6 +199,7 @@ class circle{
     this.border_color = new color(0,0,0,255);
     this.fill = true;
     this.border = false;
+    this.tag = 0;
   }
   draw(){
     if(this.fill){
@@ -216,13 +228,21 @@ class circle{
     this.border = val;
   }
   setBGColor(r,g,b,a=255){
-    this.bg_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.bg_color = r;
+    }else{
+      this.bg_color.set(r,g,b,a);
+    }
   }
   setBGAlpha(a){
     this.bg_color.alpha = a;
   }
   setBorderColor(r,g,b,a=255){
-    this.border_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.border_color = r;
+    }else{
+      this.border_color.set(r,g,b,a);
+    }
   }
   setBorderAlpha(a){
     this.border_color.alpha = a;
@@ -233,6 +253,7 @@ class vect2D{
   constructor(x=0,y=0){
     this.x = x;
     this.y = y;
+    this.tag = 0;
   }
   draw(color_hex_str = "#000000ff"){
     drawPoint(this.x,this.y,color_hex_str);
@@ -319,6 +340,7 @@ class rect{
     this.border_color = new color(0,0,0,255);
     this.fill = true;
     this.border = false;
+    this.tag = 0;
   }
   draw(){
     if(this.fill){
@@ -358,16 +380,57 @@ class rect{
     this.border = val;
   }
   setBGColor(r,g,b,a=255){
-    this.bg_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.bg_color = r;
+    }else{
+      this.bg_color.set(r,g,b,a);
+    }
   }
   setBGAlpha(a){
     this.bg_color.alpha = a;
   }
   setBorderColor(r,g,b,a=255){
-    this.border_color.set(r,g,b,a);
+    if(typeof r === 'color'){
+      this.border_color = r;
+    }else{
+      this.border_color.set(r,g,b,a);
+    }
   }
   setBorderAlpha(a){
     this.border_color.alpha = a;
   }
   print(){console.log(this);}
+}
+class bar{
+  constructor(Rect){
+    this.Rect = Rect;
+    this.active = false;
+    this.marked = false;
+    this.sorted = false;
+    this.sorted_color = color.grey();
+    this.active_color = color.green();
+    this.marked_color = color.red();
+    this.unsorted_color = color.black();
+    this.tag = 0;
+    this.length = 100;
+    this.showValue = false;
+  }
+  draw(){
+    this.Rect.br.y = this.length*(this.tag/100)
+    if(this.sorted){
+      this.Rect.bg_color = this.sorted_color;
+    }else if(this.active){
+      this.Rect.bg_color = this.active_color;
+    }else if(this.marked){
+      this.Rect.bg_color = this.marked_color;
+    }else{
+      this.Rect.bg_color = this.unsorted_color;
+    }
+    this.Rect.draw();
+    if(this.showValue){
+      drawText(new vect2D(this.Rect.tl.x, this.Rect.tl.y - 20),this.tag);
+    }
+
+    //ction drawText(pt,text,size=15,font="Arial",color_hex_str = "#000000ff"){
+  }
 }

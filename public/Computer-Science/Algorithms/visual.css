@@ -1,0 +1,157 @@
+div.header{
+  background-color: #0050A0;
+  padding: 10px;
+  text-align: left;
+}
+
+div.header div.col{
+  margin-left: 50px;
+}
+
+div.header span.title-body{
+  font-size: 18pt;
+  color: white;
+  font-weight: bold;
+}
+
+div.header span.title-tail{
+  font-size: 10pt;
+  color: grey;
+  font-weight: bold;
+}
+
+body{
+  background-color: #bbbbbb;
+  /* overflow-x: hidden; */
+  font-size: 10pt;
+}
+
+div.body{
+  display: flex;
+  background-color: #bbbbbb;
+  width: 100%;
+  height: 100%;
+}
+
+div.body canvas{
+  margin-top: 10px;
+  width: 100%;
+  height: 392px;
+  /* border: 1px solid blue; */
+}
+
+div.col.no-padding{
+  padding : 0px;
+}
+
+div.input-panel{
+  margin-top: 10px
+}
+
+div.input-panel label{
+  padding : 10px;
+  min-width: 150px;
+  margin: 0px;
+}
+
+div.input-panel div#add-item-panel{
+  flex-wrap: nowrap;
+
+}
+
+div.input-panel div#add-item-panel div#item-value-cont{
+  align-content: flex-start;
+}
+
+div.input-panel div#add-item-panel label{
+  padding : 10px;
+  min-width: 150px;
+  margin: 5px 0px 0px 0px;
+  /* border: 1px solid red; */
+}
+
+div.input-panel div#add-item-header1,
+div.input-panel div#add-item-header2{
+  padding-top: 5px;
+}
+
+div.input-panel div#add-item-header1 input[type='button'],
+div.input-panel div#add-item-header2 input[type='button']{
+  width: 80px;
+  height: 18px;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 2px;
+  border: none;
+  font-size: 10pt;
+  margin-left: 10px;
+}
+
+div.input-panel div#add-item-container{
+
+}
+
+div.input-panel div#add-item-panel input[type='number']{
+  width : 100%;
+  padding-left: 20px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+div.input-panel div#add-item-panel button{
+  width : 80px;
+  margin-left: 10px;
+}
+
+div.input-panel select{
+  padding-left: 20px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 5px;
+}
+
+div.input-panel input[type='number']{
+  width : 100%;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+
+div.input-panel span.cont-color{
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  float: right;
+  margin-right: 25%;
+  margin-top: 10px;
+}
+
+div.input-panel input[type='color']{
+  opacity: 0;
+}
+
+span.checkbox input[type='checkbox']{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+span.checkbox{
+
+}
+
+div.input-panel button{
+  margin: 10px;
+  width: 100px;
+}
+
+div.row{
+/* border: 1px solid red; */
+}
+
+div.col{
+/* border: 1px solid black; */
+}

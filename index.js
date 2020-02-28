@@ -1,18 +1,15 @@
-const PORT = 8081; 
-const HOSTNAME = '127.0.0.1';
-var http = require('http');
-var fs = require('fs')
-var server;
+var express = require('express');
 
-fs.readFile('../index.html',(err,html) => {
-	if(err) throw err;
-	server = http.createServer((req,res) => {
-		res.writeHead(200,{'Content-Type':'text/html'});
-		res.write("TESTING TESTING TESTING === JJJJJJJJJJJJJJJJJJJAAAAAAAAAAAAAAAAAAAAAA");
-		res.end();
-	});
-	server.listen(PORT, HOSTNAME, () => {
-		console.log('Server running at http://${HOSTNAME}:${PORT}/');
-	});
-})
+var PORT = process.env.PORT || 8081; 
+var HOSTNAME = '127.0.0.1';
 
+var app = express();
+
+app.get('/', function (req, res) {res.sendFile(__dirname + '/index.html');});
+app.get('/img/*', (req, res) => { res.sendFile(__dirname + req.url); });
+app.get('/css/*', (req, res) => { res.sendFile(__dirname + req.url); });
+app.get('*', (req, res) => { res.render(__dirname + '/404notfound.html'); });
+
+app.listen(PORT, function () {
+	console.log('Server running at http://' + HOSTNAME + ':' + PORT + '/');
+});
